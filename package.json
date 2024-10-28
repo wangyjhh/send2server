@@ -1,0 +1,44 @@
+{
+    "name": "typescript_template",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "This is a TypeScript project template.",
+    "author": "wangyjhh",
+    "license": "MIT",
+    "keywords": [],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsx watch ./src/index.ts",
+        "build": "unbuild",
+        "stub": "unbuild --stub",
+        "lint": "eslint .",
+        "fix": "eslint . --fix",
+        "start": "node ./dist/index.mjs",
+        "test": "vitest",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "ssh2": "^1.16.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.16.11",
+        "@types/ssh2": "^1.15.1",
+        "@wangyjhh/eslint-config": "^1.0.2",
+        "eslint": "^9.12.0",
+        "tsx": "^3.14.0",
+        "typescript": "^5.6.3",
+        "unbuild": "^2.0.0"
+    }
+}
