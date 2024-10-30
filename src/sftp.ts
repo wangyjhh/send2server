@@ -1,6 +1,5 @@
 import type { FileEntryWithStats, SFTPWrapper, Client as SSHClient } from 'ssh2'
 import type { ConnectConfig } from '../types'
-import { log } from 'node:console'
 import { Client } from 'ssh2'
 
 export class SftpHandle {
