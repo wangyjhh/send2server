@@ -2,15 +2,24 @@ import { log } from 'node:console'
 import fs from 'fs-extra'
 import Client from 'ssh2-sftp-client'
 
-export const upload = async (localPath: string, remotePath: string) => {
+export const upload = async (
+    options: {
+        host: string
+        port: number
+        username: string
+        password: string
+    },
+    localPath: string,
+    remotePath: string,
+) => {
     const sftp = new Client()
     try {
         // 连接到 SFTP 服务器
         await sftp.connect({
-            host: '59.110.92.231',
-            port: 9322,
-            username: 'wyj',
-            password: 'huihui',
+            host: options.host,
+            port: options.port,
+            username: options.username,
+            password: options.password,
         })
         log('上传开始')
         // 检查本地路径是否存在

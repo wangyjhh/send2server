@@ -61,24 +61,33 @@ const uploadFile = async (sftp: Client, localPath: string, remotePath: string, b
     task_log.push(`上传文件成功：${localPath} -> ${remotePath}`)
 }
 
-export const my_upload = async (options: { localPath: string, remotePath: string, remotePlatform?: 'linux' | 'windows' }) => {
+export const my_upload = async (
+    options: {
+        host: string
+        port: number
+        username: string
+        password: string
+    },
+    localPath: string,
+    remotePath: string,
+) => {
     const sftp = new Client()
     try {
         // 连接到 SFTP 服务器
         await sftp.connect({
-            host: '59.110.92.231',
-            port: 9322,
-            username: 'wyj',
-            password: 'huihui',
+            host: options.host,
+            port: options.port,
+            username: options.username,
+            password: options.password,
         })
         log('上传开始')
         // 检查本地路径是否存在
-        if (!(await fs.pathExists(options.localPath))) {
+        if (!(await fs.pathExists(localPath))) {
             log('本地路径不存在')
             return
         }
         // 获取待上传目录信息
-        const uploadDirInfo = getUploadDir(options.localPath, options.remotePath)
+        const uploadDirInfo = getUploadDir(localPath, remotePath)
         // 创建进度条
         const bar = new ProgressBar('上传中 [:bar] :percent :etas', {
             complete: '=',
