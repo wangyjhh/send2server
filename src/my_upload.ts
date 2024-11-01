@@ -4,7 +4,18 @@ import fs from 'fs-extra'
 import ProgressBar from 'progress'
 import Client from 'ssh2-sftp-client'
 
-const task_log: any[] = []
+const ProgressFileNameWidth = 30
+const ProgressBarWidth = 25
+const ProgressPercentWidth = 5
+const ProgressTimeMaxWidth = 6
+const ProgressGapWidth = 4
+const ProgressWidth = ProgressFileNameWidth + ProgressBarWidth + ProgressPercentWidth + ProgressTimeMaxWidth + ProgressGapWidth
+const RemoteDirCreateSuccess = ' 创建成功 '
+const RemoteDirCreateLogWidth = ProgressFileNameWidth + ProgressBarWidth - RemoteDirCreateSuccess.length
+const StartUpload = ' 上 传 开 始 '
+const EndUpload = ' 上 传 结 束 '
+const StartUploadfix = ''.padStart(((ProgressWidth - StartUpload.length) / 2), '=')
+const EndUploadfix = ''.padStart((ProgressWidth - EndUpload.length) / 2, '=')
 
 const formatPath = (platform: 'windows' | 'linux', remotePath: string) => {
     if (platform === 'windows') {
@@ -46,9 +57,11 @@ const getUploadDir = (localPath: string, remotePath: string, remotePlatform?: 'l
 }
 
 const createRemoteDir = async (sftp: Client, dirPath: string) => {
+    const start = Date.now()
     if (!(await sftp.exists(dirPath))) {
         await sftp.mkdir(dirPath, true)
     }
+    log(`${dirPath.padEnd(RemoteDirCreateLogWidth, ' ')}${RemoteDirCreateSuccess}${''.padStart(ProgressPercentWidth, ' ')}${((Date.now() - start) / 1000).toFixed(2)}s`)
 }
 
 const uploadFile = async (sftp: Client, localPath: string, remotePath: string) => {
@@ -56,10 +69,10 @@ const uploadFile = async (sftp: Client, localPath: string, remotePath: string) =
     await sftp.fastPut(localPath, remotePath, {
         step(total_transferred, chunk, total) {
             // 创建进度条
-            const bar = new ProgressBar(`${parse(localPath).base} [:bar] :percent :myetas`, {
+            const bar = new ProgressBar(`${parse(localPath).base.padEnd(ProgressFileNameWidth, ' ')} [:bar] :percent :myetas`, {
                 complete: '=',
                 incomplete: ' ',
-                width: 20,
+                width: ProgressBarWidth,
                 total,
             })
             bar.tick(total_transferred, {
@@ -88,10 +101,10 @@ export const my_upload = async (
             username: options.username,
             password: options.password,
         })
-        log('=============上传开始=============')
+        log(`${StartUploadfix}${StartUpload}${StartUploadfix}`)
         // 检查本地路径是否存在
         if (!(await fs.pathExists(localPath))) {
-            log('本地路径不存在')
+            log(`${localPath}` + ' 本地路径不存在 ')
             return
         }
         // 获取待上传目录信息
@@ -115,12 +128,8 @@ export const my_upload = async (
         console.error('发生错误:', err.message)
     }
     finally {
-        // 打印日志
-        task_log.forEach((l) => {
-            log(l)
-        })
         // 关闭连接
         await sftp.end()
-        log('=============上传结束=============')
+        log(`${EndUploadfix}${EndUpload}${EndUploadfix}`)
     }
 }
