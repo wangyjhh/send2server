@@ -48,17 +48,25 @@ const getUploadDir = (localPath: string, remotePath: string, remotePlatform?: 'l
 const createRemoteDir = async (sftp: Client, dirPath: string) => {
     if (!(await sftp.exists(dirPath))) {
         await sftp.mkdir(dirPath, true)
-        task_log.push(`创建远程目录成功：${dirPath}`)
-    }
-    else {
-        task_log.push(`远程目录已存在：${dirPath}`)
     }
 }
 
-const uploadFile = async (sftp: Client, localPath: string, remotePath: string, bar: any) => {
-    await sftp.fastPut(localPath, remotePath)
-    bar.tick(1)
-    task_log.push(`上传文件成功：${localPath} -> ${remotePath}`)
+const uploadFile = async (sftp: Client, localPath: string, remotePath: string) => {
+    const start = Date.now()
+    await sftp.fastPut(localPath, remotePath, {
+        step(total_transferred, chunk, total) {
+            // 创建进度条
+            const bar = new ProgressBar(`${parse(localPath).base} [:bar] :percent :myetas`, {
+                complete: '=',
+                incomplete: ' ',
+                width: 20,
+                total,
+            })
+            bar.tick(total_transferred, {
+                myeta: ((Date.now() - start) / 1000).toFixed(2),
+            })
+        },
+    })
 }
 
 export const my_upload = async (
@@ -80,7 +88,7 @@ export const my_upload = async (
             username: options.username,
             password: options.password,
         })
-        log('上传开始')
+        log('=============上传开始=============')
         // 检查本地路径是否存在
         if (!(await fs.pathExists(localPath))) {
             log('本地路径不存在')
@@ -88,13 +96,6 @@ export const my_upload = async (
         }
         // 获取待上传目录信息
         const uploadDirInfo = getUploadDir(localPath, remotePath)
-        // 创建进度条
-        const bar = new ProgressBar('上传中 [:bar] :percent :etas', {
-            complete: '=',
-            incomplete: ' ',
-            width: 20,
-            total: uploadDirInfo.files.length,
-        })
         // 创建新建远程目录任务数组
         await createRemoteDir(sftp, uploadDirInfo.root.absoluteRemotePath)
         const dirCreateTask = uploadDirInfo.directories.map((dir) => {
@@ -105,7 +106,7 @@ export const my_upload = async (
 
         // 创建上传文件任务数组
         const filesUploadTask = uploadDirInfo.files.map((file) => {
-            return uploadFile(sftp, file.absoluteLocalpath, file.absoluteRemotePath, bar)
+            return uploadFile(sftp, file.absoluteLocalpath, file.absoluteRemotePath)
         })
         // 批量上传文件
         await Promise.all(filesUploadTask)
@@ -120,6 +121,6 @@ export const my_upload = async (
         })
         // 关闭连接
         await sftp.end()
-        log('上传结束')
+        log('=============上传结束=============')
     }
 }
