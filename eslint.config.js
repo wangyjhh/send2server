@@ -1,3 +1,5 @@
 import wangyjhh from '@wangyjhh/eslint-config'
 
-export default wangyjhh()
+export default wangyjhh({
+    ignores: ['pnpm-workspace.yaml'],
+})
