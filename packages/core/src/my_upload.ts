@@ -67,7 +67,7 @@ const createRemoteDir = async (sftp: Client, dirPath: string) => {
 const uploadFile = async (sftp: Client, localPath: string, remotePath: string) => {
     const start = Date.now()
     await sftp.fastPut(localPath, remotePath, {
-        step(total_transferred, chunk, total) {
+        step(total_transferred, _chunk, total) {
             // 创建进度条
             const bar = new ProgressBar(`${parse(localPath).base.padEnd(ProgressFileNameWidth, ' ')} [:bar] :percent :myetas`, {
                 complete: '=',

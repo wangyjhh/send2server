@@ -69,13 +69,17 @@ importers:
         specifier: ^9.0.4
         version: 9.0.4
 
-  packages/send2server-node:
+  packages/send2server-cli:
     devDependencies:
       vite:
         specifier: ^5.4.9
         version: 5.4.10(@types/node@20.16.11)
 
   packages/vite-plugin-send2server:
+    dependencies:
+      '@send2server/send2server-core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       vite:
         specifier: ^5.4.9
