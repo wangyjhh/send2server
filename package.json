@@ -1,46 +1,24 @@
 {
-    "name": "typescript_template",
+    "name": "@send2server/monorepo",
     "type": "module",
     "version": "1.0.0",
-    "description": "This is a TypeScript project template.",
+    "private": true,
+    "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
     "keywords": [],
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.cjs"
-        }
-    },
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
     "scripts": {
-        "dev": "tsx watch ./src/index.ts",
-        "build": "unbuild",
-        "stub": "unbuild --stub",
+        "stub": "pnpm -r -F=./packages/** run stub",
+        "build": "pnpm -r -F=./packages/** run build",
         "lint": "eslint .",
-        "fix": "eslint . --fix",
-        "start": "node ./dist/index.mjs",
-        "test": "vitest",
-        "typecheck": "tsc --noEmit"
+        "fix": "eslint . --fix"
     },
     "dependencies": {
-        "fs-extra": "^11.2.0",
-        "progress": "^2.0.3",
-        "ssh2": "^1.16.0",
-        "ssh2-sftp-client": "^11.0.0"
+        "fs-extra": "^11.2.0"
     },
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^20.16.11",
-        "@types/progress": "^2.0.7",
-        "@types/ssh2": "^1.15.1",
-        "@types/ssh2-sftp-client": "^9.0.4",
         "@wangyjhh/eslint-config": "^1.0.2",
         "eslint": "^9.12.0",
         "tsx": "^3.14.0",

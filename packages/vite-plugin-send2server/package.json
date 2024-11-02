@@ -1,0 +1,22 @@
+{
+    "name": "@send2server/vite-plugin-send2server",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Send the builded files to the server.",
+    "author": "wangyjhh",
+    "license": "MIT",
+    "keywords": ["vite-plugin"],
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "stub": "unbuild --stub",
+        "build": "unbuild"
+    },
+    "devDependencies": {
+        "vite": "^5.4.9"
+    }
+}
