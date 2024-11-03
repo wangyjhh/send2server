@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@send2server/send2server-core": "workspace:*",
-        "commander": "^12.1.0"
+        "commander": "^12.1.0",
+        "jiti": "^2.4.0"
     }
 }

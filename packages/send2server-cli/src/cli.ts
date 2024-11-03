@@ -1,10 +1,11 @@
 import type { Send2ServerConfigOptions } from './types'
 import { log } from 'node:console'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { cwd } from 'node:process'
 import { upload } from '@send2server/send2server-core'
 import { Command } from 'commander'
 import fs from 'fs-extra'
+import { createJiti } from 'jiti'
 
 const program = new Command()
 
@@ -15,14 +16,14 @@ const supportedConfigFiles = [
 ]
 
 const existingConfigFiles = supportedConfigFiles.filter(file => fs.existsSync(join(cwd(), file)))
-
 program.name('send2server').action(async () => {
     if (existingConfigFiles.length === 0) {
         log('No config file found')
     }
     else {
-        const config: Send2ServerConfigOptions = await import(join(cwd(), existingConfigFiles[0]))
-        await upload(config.sftpConfig, config.localPath, config.remotePath)
+        const jiti = createJiti(resolve(cwd(), '.'))
+        const config: Send2ServerConfigOptions = (await jiti.import('./send2server.config'))
+        upload(config.sftpConfig, config.localPath, config.remotePath)
     }
 })
 
