@@ -1,20 +1,20 @@
 {
-    "name": "@send2server/send2server-cli",
+    "name": "send2server",
     "type": "module",
     "version": "0.1.0",
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
     "keywords": [],
-    "main": "./out/dist/index.mjs",
-    "module": "./out/dist/index.mjs",
-    "types": "./out/dist/index.d.ts",
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
     "bin": {
-        "send2server": "./out/dist/cli.mjs"
+        "send2server": "./dist/cli.mjs"
     },
     "scripts": {
         "stub": "unbuild --stub",
-        "build": "unbuild && tsx script/copy-files.ts"
+        "build": "unbuild"
     },
     "dependencies": {
         "@send2server/send2server-core": "workspace:*",

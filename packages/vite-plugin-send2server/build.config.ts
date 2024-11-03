@@ -5,5 +5,4 @@ export default defineBuildConfig({
     externals: ['vite'],
     declaration: true,
     clean: true,
-    outDir: 'out/dist',
 })
