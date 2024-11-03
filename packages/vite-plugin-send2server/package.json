@@ -6,12 +6,9 @@
     "author": "wangyjhh",
     "license": "MIT",
     "keywords": ["vite-plugin"],
-    "main": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
+    "main": "./out/dist/index.mjs",
+    "module": "./out/dist/index.mjs",
+    "types": "./out/dist/index.d.ts",
     "scripts": {
         "stub": "unbuild --stub",
         "build": "unbuild && tsx script/copy-files.ts"

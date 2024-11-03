@@ -6,15 +6,12 @@
     "author": "wangyjhh",
     "license": "MIT",
     "keywords": [],
-    "main": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
+    "main": "./out/dist/index.mjs",
+    "module": "./out/dist/index.mjs",
+    "types": "./out/dist/index.d.ts",
     "bin": {
-        "send2server": "./dist/cli.mjs"
+        "send2server": "./out/dist/cli.mjs"
     },
-    "files": [
-        "dist"
-    ],
     "scripts": {
         "stub": "unbuild --stub",
         "build": "unbuild && tsx script/copy-files.ts"

@@ -5,4 +5,5 @@ export default defineBuildConfig({
     externals: ['fs-extra'],
     declaration: true,
     clean: true,
+    outDir: 'out/dist',
 })
