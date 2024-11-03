@@ -1,7 +1,7 @@
 {
     "name": "@send2server/vite-plugin-send2server",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
@@ -14,7 +14,7 @@
     ],
     "scripts": {
         "stub": "unbuild --stub",
-        "build": "unbuild"
+        "build": "unbuild && tsx script/copy-files.ts"
     },
     "dependencies": {
         "@send2server/send2server-core": "workspace:*"

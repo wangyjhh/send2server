@@ -1,7 +1,7 @@
 {
     "name": "@send2server/send2server-core",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "private": true,
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
