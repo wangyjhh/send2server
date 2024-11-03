@@ -12,7 +12,7 @@
         "skipDefaultLibCheck": true,
         "skipLibCheck": true
     },
-    "include": ["packages/**/*", "types/**/*"],
+    "include": ["packages/**/*"],
     "exclude": [
         "node_modules"
     ]

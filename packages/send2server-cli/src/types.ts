@@ -1,5 +1,3 @@
-import type { Send2ServerOptions } from '../../vite-plugin-send2server/'
+import type { Send2ServerOptions } from '@send2server/send2server-core/dist/index'
 
-export interface Send2ServerConfigOptions extends Send2ServerOptions {
-
-}
+export interface Send2ServerConfigOptions extends Send2ServerOptions {}

@@ -1,13 +1,3 @@
-export interface SFTPConfig {
-    host: string
-    port: number
-    username: string
-    password: string
-}
+import type { Send2ServerOptions } from '@send2server/send2server-core/dist/index'
 
-export interface Send2ServerOptions {
-    sftpConfig: SFTPConfig
-    localPath: string
-    remotePath: string
-
-}
+export interface Send2ServerConfigOptions extends Send2ServerOptions {}

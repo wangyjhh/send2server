@@ -1,3 +1,4 @@
+import type { Send2Server } from './types'
 import { log } from 'node:console'
 import { join, parse } from 'node:path'
 import fs from 'fs-extra'
@@ -82,15 +83,10 @@ const uploadFile = async (sftp: Client, localPath: string, remotePath: string) =
     })
 }
 
-export const my_upload = async (
-    options: {
-        host: string
-        port: number
-        username: string
-        password: string
-    },
-    localPath: string,
-    remotePath: string,
+export const my_upload: Send2Server = async (
+    options,
+    localPath,
+    remotePath,
 ) => {
     const sftp = new Client()
     try {

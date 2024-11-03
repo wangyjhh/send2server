@@ -22,7 +22,7 @@
     "scripts": {
         "dev": "tsx watch ./src/index.ts",
         "send": "send2server",
-        "build": "unbuild",
+        "build": "unbuild && pnpm send",
         "stub": "unbuild --stub",
         "lint": "eslint .",
         "fix": "eslint . --fix",
