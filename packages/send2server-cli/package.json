@@ -9,6 +9,9 @@
     "main": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
+    "bin": {
+        "send2server": "./dist/cli.mjs"
+    },
     "files": [
         "dist"
     ],
@@ -16,7 +19,8 @@
         "stub": "unbuild --stub",
         "build": "unbuild"
     },
-    "devDependencies": {
-        "vite": "^5.4.9"
+    "dependencies": {
+        "@send2server/send2server-core": "workspace:*",
+        "commander": "^12.1.0"
     }
 }

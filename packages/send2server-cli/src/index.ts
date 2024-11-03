@@ -1,3 +1,2 @@
-import { log } from 'node:console'
-
-log('Hello World!')
+export { defineSend2ServerConfig } from './config'
+export type { Send2ServerConfigOptions } from './types'
