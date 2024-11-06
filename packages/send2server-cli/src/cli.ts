@@ -1,9 +1,9 @@
 import type { Send2ServerConfigOptions } from './types'
 import { log } from 'node:console'
+import { existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { cwd } from 'node:process'
 import { Command } from 'commander'
-import fs from 'fs-extra'
 import { createJiti } from 'jiti'
 import { upload } from 'send2server-core'
 
@@ -15,7 +15,7 @@ const supportedConfigFiles = [
     'send2server.config.mjs',
 ]
 
-const existingConfigFiles = supportedConfigFiles.filter(file => fs.existsSync(join(cwd(), file)))
+const existingConfigFiles = supportedConfigFiles.filter(file => existsSync(join(cwd(), file)))
 program.name('send2server').action(async () => {
     if (existingConfigFiles.length === 0) {
         log('No config file found')
