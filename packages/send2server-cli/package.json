@@ -1,7 +1,7 @@
 {
     "name": "send2server",
     "type": "module",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
