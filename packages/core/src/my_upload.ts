@@ -1,7 +1,7 @@
 import type { Send2Server } from './types'
 import { log } from 'node:console'
+import { existsSync, readdirSync } from 'node:fs'
 import { join, parse } from 'node:path'
-import fs from 'fs-extra'
 import ProgressBar from 'progress'
 import Client from 'ssh2-sftp-client'
 
@@ -33,7 +33,7 @@ const getUploadDir = (localPath: string, remotePath: string, remotePlatform?: 'l
     }
     const rootName = parse(localPath).name
 
-    const list = fs.readdirSync(localPath, { withFileTypes: true, recursive: true })
+    const list = readdirSync(localPath, { withFileTypes: true, recursive: true })
         .map((item) => {
             const relativePath = rootName === parse(item.path).name ? join(parse(item.path).name, item.name) : join(rootName, parse(item.path).name, item.name)
             const absoluteRemotePath = formatPath(remotePlatform, join(remotePath, relativePath))
@@ -99,7 +99,7 @@ export const my_upload: Send2Server = async (
         })
         log(`${StartUploadfix}${StartUpload}${StartUploadfix}`)
         // 检查本地路径是否存在
-        if (!(await fs.pathExists(localPath))) {
+        if (!(existsSync(localPath))) {
             log(`${localPath}` + ' 本地路径不存在 ')
             return
         }
