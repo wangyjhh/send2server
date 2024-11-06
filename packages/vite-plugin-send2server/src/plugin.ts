@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 import type { Send2ServerConfigOptions } from './types'
-import { upload } from '@send2server/core'
+import { upload } from 'send2server-core'
 
 export function send2server(options: Send2ServerConfigOptions): Plugin {
     return {

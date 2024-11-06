@@ -2,10 +2,10 @@ import type { Send2ServerConfigOptions } from './types'
 import { log } from 'node:console'
 import { join, resolve } from 'node:path'
 import { cwd } from 'node:process'
-import { upload } from '@send2server/core'
 import { Command } from 'commander'
 import fs from 'fs-extra'
 import { createJiti } from 'jiti'
+import { upload } from 'send2server-core'
 
 const program = new Command()
 

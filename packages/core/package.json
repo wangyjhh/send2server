@@ -1,5 +1,5 @@
 {
-    "name": "@send2server/core",
+    "name": "send2server-core",
     "type": "module",
     "version": "0.2.0",
     "description": "Send the builded files to the server.",

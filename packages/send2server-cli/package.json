@@ -17,8 +17,8 @@
         "build": "unbuild"
     },
     "dependencies": {
-        "@send2server/core": "workspace:*",
         "commander": "^12.1.0",
-        "jiti": "^2.4.0"
+        "jiti": "^2.4.0",
+        "send2server-core": "workspace:*"
     }
 }
