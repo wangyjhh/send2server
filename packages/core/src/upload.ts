@@ -1,6 +1,6 @@
 import type { Send2Server } from './types'
 import { log } from 'node:console'
-import fs from 'fs-extra'
+import { existsSync } from 'node:fs'
 import Client from 'ssh2-sftp-client'
 
 export const upload: Send2Server = async (
@@ -19,7 +19,7 @@ export const upload: Send2Server = async (
         })
         log('上传开始')
         // 检查本地路径是否存在
-        if (!(await fs.pathExists(localPath))) {
+        if (!(existsSync(localPath))) {
             log('本地路径不存在')
             return
         }
