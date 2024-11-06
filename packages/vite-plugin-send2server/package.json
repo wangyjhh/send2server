@@ -14,7 +14,7 @@
         "build": "unbuild"
     },
     "dependencies": {
-        "@send2server/send2server-core": "workspace:*"
+        "@send2server/core": "workspace:*"
     },
     "devDependencies": {
         "vite": "^5.4.9"

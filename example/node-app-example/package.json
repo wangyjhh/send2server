@@ -31,10 +31,10 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@send2server/send2server-cli": "workspace:*",
         "@types/node": "^20.16.11",
         "@wangyjhh/eslint-config": "^1.0.2",
         "eslint": "^9.12.0",
+        "send2server": "workspace:*",
         "tsx": "^3.14.0",
         "typescript": "^5.6.3",
         "unbuild": "^2.0.0",
