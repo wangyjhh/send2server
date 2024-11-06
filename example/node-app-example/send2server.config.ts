@@ -1,5 +1,5 @@
 import { join, resolve } from 'node:path'
-import { defineSend2ServerConfig } from '@send2server/send2server-cli'
+import { defineSend2ServerConfig } from 'send2server'
 
 export default defineSend2ServerConfig({
     sftpConfig: {
