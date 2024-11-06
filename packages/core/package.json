@@ -1,7 +1,7 @@
 {
     "name": "@send2server/core",
     "type": "module",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
@@ -9,7 +9,13 @@
     "main": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
-    "files": ["", "LICENSE", "README.md", "dist", "packages.json"],
+    "files": [
+        "",
+        "LICENSE",
+        "README.md",
+        "dist",
+        "packages.json"
+    ],
     "scripts": {
         "stub": "unbuild --stub",
         "build": "unbuild"

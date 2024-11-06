@@ -2,6 +2,7 @@
     "name": "typescript_template",
     "type": "module",
     "version": "1.0.0",
+    "private": true,
     "description": "This is a TypeScript project template.",
     "author": "wangyjhh",
     "license": "MIT",

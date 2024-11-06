@@ -1,11 +1,13 @@
 {
     "name": "vite-plugin-send2server",
     "type": "module",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Send the builded files to the server.",
     "author": "wangyjhh",
     "license": "MIT",
-    "keywords": ["vite-plugin"],
+    "keywords": [
+        "vite-plugin"
+    ],
     "main": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
