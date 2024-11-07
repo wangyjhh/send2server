@@ -41,3 +41,11 @@ export default defineSend2ServerConfig({
     }
 }
 ```
+
+#### 3. Run the build command.
+```bash
+# npm
+$ npm run build
+# pnpm
+$ pnpm build
+```
