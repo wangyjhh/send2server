@@ -1,4 +1,4 @@
-## Send2Server
+## Vite-Plugin-Send2Server
 
 ### Description
 This is Vite Plugin about send the builded files to the server.
